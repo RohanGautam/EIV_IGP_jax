@@ -4,8 +4,10 @@ import jax.numpy as jnp
 
 @jax.jit
 def evaluate_kernel(x, y, params):
-    """Evaluate the kernel. Can be for a single point,
-    or over a grid, based on how broadcasting is handled for arguments passed."""
+    """
+    Evaluate the kernel. Can be for a single point,
+    or over a grid, based on how broadcasting is handled for arguments passed.
+    """
     p, kappa, sigma = params["p"], params["kappa"], params["variance"]
     # absolute distance is same as euclidean distance in 1D
     diff = jnp.abs(x - y)
@@ -26,7 +28,9 @@ def invert(matrix):
 
 @jax.jit
 def integrate_kernel(x, y, kernel_params):
-    """integrate kernel over upper limit values given by x"""
+    """
+    integrate kernel over upper limit values given by x. Uses Chebyshev-Gauss quadrature
+    """
 
     integration_len = 30
     # [-1,1]

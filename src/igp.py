@@ -52,7 +52,9 @@ def eiv_igp(x, y, cov, x_star, simplify=False):
 def get_predictions_on_grid(samples, eiv_input):
     samples = samples.copy()
     grid = eiv_input["x_star"]
+    # just fix the shape of x_true samples - does not effect variables of interest we want to extract here
     samples["x_true"] = jnp.zeros((len(samples["x_true"]), len(grid)))
+
     derivative_process_samples = samples["w_m"]
     posterior_predictive = numpyro.infer.Predictive(eiv_igp, samples)(
         jax.random.PRNGKey(1),
@@ -62,7 +64,6 @@ def get_predictions_on_grid(samples, eiv_input):
         # x_std=jnp.zeros_like(grid),
         cov=jnp.zeros((len(grid), 2, 2)),
         y=jnp.zeros_like(grid),
-        # y_std=jnp.zeros_like(grid),
         simplify=True,  # is True here to doubly integrate over x_star
     )
     integrated_process_mean_samples = posterior_predictive["integrated_mean"]

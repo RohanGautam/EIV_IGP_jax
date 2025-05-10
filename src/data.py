@@ -31,4 +31,5 @@ def preprocess(df: pd.DataFrame, gia_rate=0, y_occ=2010) -> dict:
         "y": y,
         "cov": cov,
         "x_star": x_star,
+        "x_unscaled": x_grid * 1000,
     }

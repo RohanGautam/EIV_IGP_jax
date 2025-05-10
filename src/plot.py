@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
 
-def plot_input(df: pd.DataFrame):
+def plot_input(df: pd.DataFrame, points=True):
     """
     Plots sea-level data with error boxes, applying a GIA correction if specified.
 
@@ -24,19 +24,19 @@ def plot_input(df: pd.DataFrame):
     x_err_2sigma = 2 * x_std
     y_err_2sigma = 2 * y_std
 
-    plt.figure(figsize=(10, 5))
+    # plt.figure(figsize=(10, 5))
     ax = plt.gca()
 
-    # Plot individual data points as open black circles
-    plt.plot(
-        x,
-        y,
-        "o",
-        markerfacecolor="none",
-        markeredgecolor="black",
-        markersize=6,
-        zorder=2,
-    )
+    if points:
+        plt.plot(
+            x,
+            y,
+            "o",
+            markerfacecolor="none",
+            markeredgecolor="black",
+            markersize=6,
+            zorder=2,
+        )
 
     # Plot error boxes (2-sigma uncertainty)
     for i in range(len(x)):
@@ -57,6 +57,24 @@ def plot_input(df: pd.DataFrame):
             zorder=1,
         )
         ax.add_patch(rect)
+
+
+def plot_samples(eiv_input, sl_samples):
+    mu = np.mean(sl_samples, axis=0)
+    sd = np.std(sl_samples, axis=0)
+
+    plt.fill_between(
+        eiv_input["x_unscaled"],
+        mu - 2 * sd,
+        mu + 2 * sd,
+        color="C0",
+        alpha=0.2,
+    )
+    plt.plot(
+        eiv_input["x_unscaled"],
+        mu,
+        color="C0",
+    )
 
 
 if __name__ == "__main__":

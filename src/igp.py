@@ -6,7 +6,7 @@ import numpyro.distributions as dist
 from .utils import evaluate_kernel, integrate_kernel, invert
 
 
-def eiv_igp(x, y, cov, x_star, simplify=False):
+def eiv_igp(x, y, cov, x_star, simplify=False, **kwargs):
     alpha = numpyro.sample("alpha", dist.Normal(0, 1000.0))
     p = numpyro.sample("p", dist.Uniform(0.0, 1.0))
     kernel_precision = numpyro.sample("tau_g", dist.Gamma(10.0, 100.0))

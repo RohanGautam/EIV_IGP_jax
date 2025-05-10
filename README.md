@@ -4,7 +4,11 @@ My implementation of the EIV IGP model in numpyro/JAX. Used for calculating baye
 
 ## Features
 
-- Enables running MCMC on the GPU
-- Supports SVI estimates for extremely fast posterior inference
-- Clean, pythonic interface
-- Easy to understand codebase (my biased opinion)
+- 🚀 Enables running MCMC on the GPU
+- ⚡ Supports SVI estimates for extremely fast posterior inference
+- 🐍 Clean, pythonic interface
+- 🧠 Easy to understand codebase (my biased opinion)
+
+## Usage
+
+Run the `example.ipynb` notebook. It has examples of the workflow - data processing, MCMC, and SVI estimates.

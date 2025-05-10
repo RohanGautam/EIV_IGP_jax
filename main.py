@@ -14,11 +14,11 @@ import numpy as np
 from pathlib import Path
 
 
-def main():
+def main(input_file):
     output_folder = Path("out")
     output_folder.mkdir(parents=True, exist_ok=True)
 
-    df = pd.read_csv("./data/NYC.csv")
+    df = pd.read_csv(input_file)
     eiv_input = data.preprocess(df, gia_rate=0)
 
     mcmc = numpyro.infer.MCMC(
@@ -73,4 +73,4 @@ def main():
 
 if __name__ == "__main__":
     input_file = "./data/NYC.csv"
-    main()
+    main(input_file)

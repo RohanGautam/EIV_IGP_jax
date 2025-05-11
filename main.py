@@ -13,6 +13,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 
+jax.config.update("jax_enable_x64", True)
+
 
 def main(input_file):
     output_folder = Path("out")
@@ -27,14 +29,14 @@ def main(input_file):
             dense_mass=True,
         ),
         num_warmup=200,
-        num_samples=500,
+        num_samples=800,
         num_chains=2,
     )
     mcmc.run(
         jax.random.PRNGKey(1),
         **eiv_input,
-        simplify=False,
     )
+    mcmc.print_summary()
 
     ## post processing
     samples = mcmc.get_samples()

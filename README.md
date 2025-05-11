@@ -2,6 +2,13 @@
 
 My implementation of the [EIV IGP model](https://arxiv.org/pdf/1312.6761#page=12.24) in numpyro/JAX. Used for calculating bayesian estimates for rates of sea level change. The rates are integrated to produce the sea level curves. The [original code](https://github.com/ncahill89/EIV_IGP) was implemented in R/JAGS.
 
+<div align="center">
+    <img src="imgs/image0.png" alt="Sea level curve" style="display: inline-block; margin-right: 10px; width: 45%;">
+    <img src="imgs/image-1.png" alt="Sea level rate" style="display: inline-block; width: 45%;">
+</div>
+
+---
+
 ## Features
 
 - 🚀 Enables running MCMC on the GPU

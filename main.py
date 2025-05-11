@@ -2,16 +2,16 @@ import os
 
 os.environ["XLA_FLAGS"] = "--xla_force_host_platform_device_count=4"
 
-import pandas as pd
-from src import igp, data, plot as plot_utils
+from pathlib import Path
 
-# from numpyro.infer import SVI, Trace_ELBO, autoguide
-# import optax
 import jax
-import numpyro
 import matplotlib.pyplot as plt
 import numpy as np
-from pathlib import Path
+import numpyro
+import pandas as pd
+
+from src import data, eivigp
+from src import plot as plot_utils
 
 jax.config.update("jax_enable_x64", True)
 
@@ -25,7 +25,7 @@ def main(input_file):
 
     mcmc = numpyro.infer.MCMC(
         numpyro.infer.NUTS(
-            igp.eiv_igp,
+            eivigp.eiv_igp,
             dense_mass=True,
         ),
         num_warmup=200,
@@ -40,7 +40,7 @@ def main(input_file):
 
     ## post processing
     samples = mcmc.get_samples()
-    derp, intp = igp.get_predictions_on_grid(samples, eiv_input)
+    derp, intp = eivigp.get_predictions_on_grid(samples, eiv_input)
 
     ## plot
     print("Saving plots")

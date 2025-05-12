@@ -22,7 +22,7 @@ My implementation of the [EIV IGP model](https://arxiv.org/pdf/1312.6761#page=12
 - Update `main.py` to point to your data file.
 - Run `uv run main.py` in your terminal.
 
-This will fun the full EIV IGP model on your data with 2 MCMC chains in parallel.
+This will run the full EIV IGP model on your data with 2 MCMC chains in parallel.
 
 > If you want to include a GIA rate, change the `gia_rate` argument in the `data.preprocess` call.
 
@@ -30,7 +30,7 @@ To have a quick look at the workflow and some figures, look at the `./example.ip
 
 ## Benchmarks
 
-On my M2 pro chip, CPU performance on a single chain with the default NYC dataset takes **~6 min**. The same thing takes **~20 mins** in the original code.
+On my M2 pro chip, CPU performance on a single chain with the default NYC dataset takes **~6 min**. The same thing takes **~20 min** in the original code.
 
 # Screenshots
 
